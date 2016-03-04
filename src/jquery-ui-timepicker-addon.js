@@ -1,12 +1,6 @@
-/*
- * jQuery Timepicker Addon
- * By: Trent Richardson [http://trentrichardson.com]
- *
- * Copyright 2013 Trent Richardson
- * You may use this project under MIT license.
- * http://trentrichardson.com/Impromptu/MIT-LICENSE.txt
- */
-
+/*! jQuery Timepicker Addon - v1.6.1 - 2015-11-14
+* http://trentrichardson.com/examples/timepicker
+* Copyright (c) 2015 Trent Richardson; Licensed MIT */
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery', 'jquery-ui'], factory);
@@ -28,7 +22,7 @@
 	*/
 	$.extend($.ui, {
 		timepicker: {
-			version: "@@version"
+			version: "1.6.1"
 		}
 	});
 
@@ -291,7 +285,10 @@
 			}
 
 			if (tp_inst._defaults.minDate === 0 || tp_inst._defaults.minDateTime === 0) {
-				tp_inst._defaults.minDate = new Date();
+				var coeff = 1000 * 60 * 5;
+				var date = new Date();  //or use any other date
+				var rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
+				tp_inst._defaults.minDate = rounded;
 			}
 			if (tp_inst._defaults.maxDate === 0 || tp_inst._defaults.maxDateTime === 0) {
 				tp_inst._defaults.maxDate = new Date();
@@ -2264,6 +2261,6 @@
 	/*
 	* Keep up with the version
 	*/
-	$.timepicker.version = "@@version";
+	$.timepicker.version = "1.6.1";
 
 }));
